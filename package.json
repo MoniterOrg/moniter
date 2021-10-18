@@ -8,7 +8,7 @@
     "build": "tsc",
     "develop": "cp src/env/env.develop.ts src/env/env.ts && tsc && node build/index.js",
     "staging": "cp src/env/env.staging.ts src/env/env.ts && tsc && node build/index.js",
-    "production": "cp src/env/env.production.ts src/env/env.ts && tsc && node build/index.js",
+    "build-production": "cp src/env/env.production.ts src/env/env.ts && tsc",
     "test": "jest"
   },
   "keywords": [

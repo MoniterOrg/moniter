@@ -24,22 +24,16 @@ Install packages:
 npm install
 ```
 
-Start in dev mode (run immediately):
+Run in develop mode (run immediately, no cron interval):
 
 ```bash
 npm run dev
 ```
 
-Start in staging mode (run every minute):
+Run in staging mode (run every minute, simulates what production does):
 
 ```bash
 npm run stage
-```
-
-Start in production mode (run every minute):
-
-```bash
-npm run prod
 ```
 
 To run in the background `forever` is recommended:
@@ -47,6 +41,14 @@ To run in the background `forever` is recommended:
 ```bash
 npm install -g forever
 ```
+
+Then build the app for production:
+
+```bash
+npm run build-production
+```
+
+And run it with `forever`:
 
 ```bash
 forever start build/index.js

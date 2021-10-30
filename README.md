@@ -1,61 +1,91 @@
-![The moniter logo.](./logo.png)
+![The moniter logo.](https://github.com/MoniterOrg/moniter/blob/master/logo.png)
 
-Made at the <img src="https://digitaleinitiativen.at/wp-content/uploads/2019/11/cropped-di-logo-2-300x206.png" height="21px" width="30px"/> [Umma Hüsla Hackathon](https://digitaleinitiativen.at/umma-huesla-hackaton/).
+[![GitHub license](https://img.shields.io/badge/license-MIT-blue.svg)](https://github.com/MoniterOrg/moniter/blob/master/LICENSE) [![npm version](https://img.shields.io/npm/v/moniter.svg?style=flat)](https://www.npmjs.com/package/moniter) ![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg) 
+
+## Our Story
+
+First prototyped in Feldkirch, Austria, then built out in full at the <img src="https://digitaleinitiativen.at/wp-content/uploads/2019/11/cropped-di-logo-2-300x206.png" height="21px" width="30px"/> [Umma Hüsla Hackathon "Reboot", October 2021](https://digitaleinitiativen.at/umma-huesla-hackaton/) <img src="https://digitaleinitiativen.at/wp-content/uploads/2019/11/cropped-di-logo-2-300x206.png" height="21px" width="30px"/>
+
+Want a dashboard, data persistence, logs, support, and more? [Try moniter Enterprise at moniter.org](https://moniter.org) - built upon this very package! 😄
+
+Otherwise, follow the remaining documenation to see how you can use `moniter` at your own organization.
 
 ## Get Started
 
-Clone this repo:
+1. Install `moniter` in your project:
 
+```bash
+npm install --save moniter
 ```
-git clone https://github.com/MoniterOrg/moniter.git
-```
 
-Configure:
+2. Setup configuration files:
 
-1. Rename `src/url-config.example.json` to `src/url-config.json`, and modify the list of URLs that you want to monitor.
+- Copy the entire contents of the folder [`example/src/config/moniter`](https://github.com/MoniterOrg/moniter/tree/master/example/src/config/moniter) to your project and modify all the configuration files:
 
-2. Likewise, rename `src/email-config.example.json` to `src/email-config.json`, and include your SMTP credentials.
+- `url-config.ts`: the list of URLs that you want to monitor. 
+- `alert-config.ts` the list of alert methods you wish to be notified by
+- `email-config.ts`, the email settings if you wish to be notified by email
+- `slack-config.ts`, the Slack webhook if you wish to be notified by slack
+
+_\*\*\* More contact methods are coming soon! \*\*\*_
 
 **Once these files have been created, do not check them into git! They potentially contain secrets!**
 
-Install packages:
+3. Create a new `.ts` file (in this example named `moniter-config.ts`) and import these configuration files and create a variable that corresponds to the [`IConfigConfig`](https://github.com/MoniterOrg/moniter/tree/master/src/interfaces/IConfigConfig.ts) interface: 
 
-```bash
-npm install
+```ts
+// src/config/moniter/moniter-config.ts
+import { IConfigConfig } from 'moniter';
+import urlConfig from './url-config.js';
+import emailConfig from './email-config.js';
+import slackConfig from './slack-config.js';
+import alertConfig from './alert-config.js';
+
+const config: IConfigConfig = {
+  urlConfig,
+  emailConfig,
+  slackConfig,
+  alertConfig,
+};
+
+export default config;
 ```
 
-Run in develop mode (run immediately, no cron interval):
+4. Import `moniter`, and your newly created config and call `monitor(config)` to start monitoring!
 
-```bash
-npm run dev
+```js
+// index.js
+import moniter from 'moniter'
+import config from './src/config/moniter/monitor-config.js'
+
+moniter(config);
 ```
 
-Run in staging mode (run every minute, simulates what production does):
+Question: _Why the `.js` everywhere when we are writing TypeScript?_ 
+
+Answer: `moniter` is trying to be very cool and uses `esnext` to package itself. This requires that we end our imports with their compiled file paths(s), i.e., `.js`.
+
+Note: At least one alert config is required! (Either email or Slack for now - more alert types coming soon!)
+
+Hint: don't want to do all these steps yourself? Try [Moniter Enterprise at moniter.org](https://moniter.org) - built on this very package! 😄
+
+## Example: Run With Forever
+
+To have an on premise site uptime checker you can use anywhere, you can run `moniter` by using the tool `forever`:
 
 ```bash
-npm run stage
+forever start index.js
 ```
 
-To run in the background `forever` is recommended:
+This will restart your `index.js` process if `moniter` crashes at any time.
 
-```bash
-npm install -g forever
-```
+See [forever's repository](https://github.com/foreversd/forever) for more information. 
 
-Then build the app for production:
+(We're not sponsored by `forever` in any way, we just think it's a cool tool 😄)
 
-```bash
-npm run build-production
-```
+## Example
 
-And run it with `forever`:
+See a working example in the [/example](/example) folder.
 
-```bash
-forever start build/index.js
-```
 
-## TODO
 
-- Regex for variety of URL strings
-- SQLite for persistance
-- Expose simple dashboard in the browser

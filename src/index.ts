@@ -1,17 +1,16 @@
-import cron from "node-cron";
-import run from "./utils/run.js";
-import env from "./env/env.js";
+import { IConfigConfig } from "./interfaces/config/IConfigConfig.js";
+import { run } from "./utils/run.js";
 
-// default behaviour is production environment
-switch (env.ENV) {
-  case "DEVELOP":
-    console.log("DEVELOP: running immediately!");
-    run();
-    break;
-  case "STAGING":
-    console.log("STAGING: croning every minute!");
-    cron.schedule("* * * * *", run);
-    break;
-  default:
-    cron.schedule("* * * * *", run);
+const moniter = (config: IConfigConfig) => {
+  run(config);
 }
+
+export { AlertMethod } from "./enums/AlertMethod";
+export { IAlertConfig } from "./interfaces/config/IAlertConfig";
+export { IConfigConfig } from "./interfaces/config/IConfigConfig";
+export { IEmailConfig } from "./interfaces/config/IEmailConfig";
+export { ISlackConfig } from "./interfaces/config/ISlackConfig";
+export { IUrlConfig } from "./interfaces/config/IUrlConfig";
+export { IError } from "./interfaces/IError";
+export { ISiteFetchException } from "./interfaces/ISiteFetchException";
+export default moniter;

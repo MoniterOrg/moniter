@@ -1,3 +1,3 @@
-export default interface IEnvironment {
+export interface IEnvironment {
     ENV: "DEVELOP" | "STAGING" | "PRODUCTION"
 }

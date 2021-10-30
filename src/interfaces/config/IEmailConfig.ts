@@ -1,4 +1,4 @@
-export default interface IEmailConfig {
+export interface IEmailConfig {
     host: string;
     port: number;
     email: string;

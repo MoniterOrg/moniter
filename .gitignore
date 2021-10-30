@@ -1,4 +1,8 @@
-build
+dist
 node_modules
-url-config.ts
+config.ts
 email-config.ts
+slack-config.ts
+alert-config.ts
+url-config.ts
+example/build

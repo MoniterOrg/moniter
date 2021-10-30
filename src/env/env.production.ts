@@ -1,6 +1,7 @@
-import IEnvironment from "../interfaces/IEnvironment"
+import { IEnvironment } from "../interfaces/IEnvironment";
 
 const env: IEnvironment = {
-    "ENV": "PRODUCTION"
-}
-export default env
+  ENV: "PRODUCTION",
+};
+
+export default env;

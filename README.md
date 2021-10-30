@@ -1,13 +1,13 @@
 ![The moniter logo.](./logo.png)
 
-Built by <img src="http://wordpress.inclub-app.com/wp-content/uploads//2021/07/Logo_InClub-2-1.svg" height="20px" width="20px"/> [InClub](https://inclub-app.com).
+Made at the <img src="https://digitaleinitiativen.at/wp-content/uploads/2019/11/cropped-di-logo-2-300x206.png" height="21px" width="30px"/> [Umma Hüsla Hackathon](https://digitaleinitiativen.at/umma-huesla-hackaton/).
 
 ## Get Started
 
 Clone this repo:
 
 ```
-git clone <TODO>
+git clone https://github.com/MoniterOrg/moniter.git
 ```
 
 Configure:

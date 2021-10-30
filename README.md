@@ -37,19 +37,22 @@ _\*\*\* More contact methods are coming soon! \*\*\*_
 // src/config/moniter/moniter-config.ts
 import { IConfigConfig } from 'moniter';
 import urlConfig from './url-config.js';
+import alertConfig from './alert-config.js';
 import emailConfig from './email-config.js';
 import slackConfig from './slack-config.js';
-import alertConfig from './alert-config.js';
 
 const config: IConfigConfig = {
   urlConfig,
-  emailConfig,
-  slackConfig,
   alertConfig,
+  // TODO: add once properly configured for your organization:
+  // emailConfig,
+  // slackConfig,
 };
 
 export default config;
 ```
+
+***Note that according to IConfigConfig, at least a urlConfig and an alertConfig is required. This example follows the example/ folder and uses only the AlertMethod.CONSOLE alert type.***
 
 4. Import `moniter`, and your newly created config and call `monitor(config)` to start monitoring!
 
@@ -61,11 +64,11 @@ import config from './src/config/moniter/monitor-config.js'
 moniter(config);
 ```
 
-**Question**: _Why the `.js` everywhere when we are writing TypeScript?_ 
+**Question**: _Why the use of the `.js` file extension everywhere when these are TypeScript files?_ 
 
-**Answer**: `moniter` is trying to be very cool and uses `esnext` to package itself. This requires that we end our imports with their compiled file paths(s), i.e., `.js`.
+**Answer**: `moniter` is trying to be very cool and uses `esm` to package itself. This requires that write our imports filepaths with their _compiled_ file paths(s), i.e., `.js`. 
 
-**Note**: At least one alert config is required! (Either email or Slack for now - more alert types coming soon!)
+TypeScript unfortunately does not consider it a responsibility for their library. [See more here](https://github.com/microsoft/TypeScript/issues/33588)
 
 > Don't want to do all these steps yourself? Try [moniter Enterprise at moniter.org](https://moniter.org) - built on this very package! 😄
 

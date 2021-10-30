@@ -9,7 +9,6 @@ export const run = async (config: IConfigConfig) => {
   
   // Send alerts only if there are errors (duh)
   if (errors.length > 0) {
-    console.log(JSON.stringify(errors));
     sendAlerts(config, errors);
   }
 };

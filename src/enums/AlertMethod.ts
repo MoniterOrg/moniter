@@ -1,4 +1,5 @@
 export enum AlertMethod {
+    CONSOLE,
     EMAIL,
     SLACK,
     SMS,

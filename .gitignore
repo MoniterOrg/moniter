@@ -1,8 +1,6 @@
 dist
 node_modules
 config.ts
-email-config.ts
-slack-config.ts
-alert-config.ts
+src/config
 url-config.ts
 example/build

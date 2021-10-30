@@ -6,13 +6,13 @@
 
 First prototyped in Feldkirch, Austria, then built out in full at the <img src="https://digitaleinitiativen.at/wp-content/uploads/2019/11/cropped-di-logo-2-300x206.png" height="21px" width="30px"/> [Umma Hüsla Hackathon "Reboot", October 2021](https://digitaleinitiativen.at/umma-huesla-hackaton/) <img src="https://digitaleinitiativen.at/wp-content/uploads/2019/11/cropped-di-logo-2-300x206.png" height="21px" width="30px"/>
 
-Want a dashboard, data persistence, logs, support, and more? [Try moniter Enterprise at moniter.org](https://moniter.org) - built upon this very package! 😄
+> Want a dashboard, data persistence, logs, support, and more? [Try moniter Enterprise at moniter.org](https://moniter.org) - built upon this very package! 😄
 
 Otherwise, follow the remaining documenation to see how you can use `moniter` at your own organization.
 
 ## Get Started
 
-1. Install `moniter` in your project:
+1. Install the `moniter` package in your project:
 
 ```bash
 npm install --save moniter
@@ -29,7 +29,7 @@ npm install --save moniter
 
 _\*\*\* More contact methods are coming soon! \*\*\*_
 
-**Once these files have been created, do not check them into git! They potentially contain secrets!**
+**Once these files have been created, ***do not*** check them into git! They potentially contain secrets!**
 
 3. Create a new `.ts` file (in this example named `moniter-config.ts`) and import these configuration files and create a variable that corresponds to the [`IConfigConfig`](https://github.com/MoniterOrg/moniter/tree/master/src/interfaces/IConfigConfig.ts) interface: 
 
@@ -61,13 +61,13 @@ import config from './src/config/moniter/monitor-config.js'
 moniter(config);
 ```
 
-Question: _Why the `.js` everywhere when we are writing TypeScript?_ 
+**Question**: _Why the `.js` everywhere when we are writing TypeScript?_ 
 
-Answer: `moniter` is trying to be very cool and uses `esnext` to package itself. This requires that we end our imports with their compiled file paths(s), i.e., `.js`.
+**Answer**: `moniter` is trying to be very cool and uses `esnext` to package itself. This requires that we end our imports with their compiled file paths(s), i.e., `.js`.
 
-Note: At least one alert config is required! (Either email or Slack for now - more alert types coming soon!)
+**Note**: At least one alert config is required! (Either email or Slack for now - more alert types coming soon!)
 
-Hint: don't want to do all these steps yourself? Try [Moniter Enterprise at moniter.org](https://moniter.org) - built on this very package! 😄
+> Don't want to do all these steps yourself? Try [moniter Enterprise at moniter.org](https://moniter.org) - built on this very package! 😄
 
 ## Example: Run With Forever
 
@@ -81,11 +81,11 @@ This will restart your `index.js` process if `moniter` crashes at any time.
 
 See [forever's repository](https://github.com/foreversd/forever) for more information. 
 
-(We're not sponsored by `forever` in any way, we just think it's a cool tool 😄)
+(We're not sponsored by `forever` in any way, we just think it's a cool tool! 😄)
 
 ## Example
 
-See a working example in the [/example](/example) folder.
+See a working example in the [example/](https://github.com/MoniterOrg/moniter/tree/master/example) folder.
 
 
 

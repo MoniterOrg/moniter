@@ -15,5 +15,5 @@ export default {
     },
   ],
   plugins: [typescript(), uglify()],
-  external: ['node-fetch', 'nodemailer']
+  external: ['node-fetch', 'nodemailer', 'node-cron']
 }

@@ -4,10 +4,10 @@ import {IError} from "../../interfaces/IError";
 import {ISlackConfig} from "../../interfaces/config/ISlackConfig";
 import { formatError } from "../formatError.js";
 
-export const sendSlackMessage = (config: ISlackConfig, error: IError): void  => {
+export const sendSlackMessage = async (config: ISlackConfig, error: IError): Promise<void>  => {
     const formattedErrors = formatError(error)
     const message = `${Constants.DEFAULT_TITLE}\n\n\`\`\`${formattedErrors}\`\`\``
-    fetch(config.webhookUrl, {
+    await fetch(config.webhookUrl, {
         method: "POST",
         headers: {
             "Content-Type": "application/json",

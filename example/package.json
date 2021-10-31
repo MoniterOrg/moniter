@@ -14,6 +14,6 @@
   "author": "Monitor Org",
   "license": "MIT",
   "dependencies": {
-    "moniter": "^1.0.8"
+    "moniter": "^1.0.12"
   }
 }

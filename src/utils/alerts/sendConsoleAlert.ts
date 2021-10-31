@@ -1,5 +1,5 @@
 import { IError } from "../..";
 
-export const sendConsoleAlert = (errors: Array<IError>) => {
-    console.log(JSON.stringify(errors));
+export const sendConsoleAlert = (error: IError) => {
+    console.log(JSON.stringify(error));
 }

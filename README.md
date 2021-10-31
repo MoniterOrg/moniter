@@ -22,10 +22,10 @@ npm install --save moniter
 
 - Copy the entire contents of the folder [`example/src/config/moniter`](https://github.com/MoniterOrg/moniter/tree/master/example/src/config/moniter) to your project and modify all the configuration files:
 
-- `url-config.ts`: the list of URLs that you want to monitor. 
-- `alert-config.ts` the list of alert methods you wish to be notified by
-- `email-config.ts`, the email settings if you wish to be notified by email
-- `slack-config.ts`, the Slack webhook if you wish to be notified by slack
+- `url-config.ts`: the list of URLs and the intervals at each that you want to monitor them. 
+- `alert-config.ts`: the list of alert methods you wish to be notified by
+- `email-config.ts`: the email settings if you wish to be notified by email
+- `slack-config.ts`: the Slack webhook if you wish to be notified by slack
 
 _\*\*\* More contact methods are coming soon! \*\*\*_
 
@@ -54,14 +54,17 @@ export default config;
 
 ***Note that according to IConfigConfig, at least a urlConfig and an alertConfig is required. This example follows the example/ folder and uses only the AlertMethod.CONSOLE alert type.***
 
-4. Import `moniter`, and your newly created config and call `monitor(config)` to start monitoring!
+4. Import `moniter`, and your newly created config and call `monitor(config)` to start monitoring! Or call `runImmediately(config)` to ignore the cron values and check all URLs immediately.
 
 ```js
 // index.js
-import moniter from 'moniter'
+import moniter, { runImmediately } from 'moniter'
 import config from './src/config/moniter/monitor-config.js'
 
 moniter(config);
+
+// alternatively, run immediately for all URLs!
+// runImmediately(config);
 ```
 
 **Question**: _Why the use of the `.js` file extension everywhere when these are TypeScript files?_ 

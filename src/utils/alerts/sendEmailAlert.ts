@@ -1,15 +1,15 @@
 import Constants from "../../constants/Constants.js";
 import { IEmailConfig } from "../../interfaces/config/IEmailConfig.js";
 import { IError } from "../../interfaces/IError.js";
-import { formatErrors } from "../formatErrors.js";
+import { formatError } from "../formatError.js";
 import nodemailer from 'nodemailer'
 
 export const sendEmailAlert = async (
   config: IEmailConfig,
-  errors: Array<IError>
+  error: IError
 ) => {
   const title = Constants.DEFAULT_TITLE;
-  const formattedErrors = formatErrors(errors);
+  const formattedErrors = formatError(error);
   const text = `${title}\n${formattedErrors}`;
   const html = `<p>${title}</p><pre>${formattedErrors}</pre>`;
 

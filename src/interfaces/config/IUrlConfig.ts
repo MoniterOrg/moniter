@@ -1,3 +1,5 @@
+import { IUrlCron } from "./IUrlCron.js";
+
 export interface IUrlConfig {
-    urls: Array<string>;
+    urlCrons: Array<IUrlCron>;
 }

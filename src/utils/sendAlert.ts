@@ -5,21 +5,21 @@ import { IConfigConfig } from '../interfaces/config/IConfigConfig';
 import { AlertMethod } from '../enums/AlertMethod';
 import { sendConsoleAlert } from './alerts/sendConsoleAlert';
 
-export const sendAlerts = (config: IConfigConfig, errors: Array<IError>) => {
+export const sendAlert = (config: IConfigConfig, error: IError) => {
   config.alertConfig.alertMethods.map((alertMethod) => {
     switch (alertMethod) {
       case AlertMethod.CONSOLE:
-        sendConsoleAlert(errors);
+        sendConsoleAlert(error);
         return;
       case AlertMethod.EMAIL:
         // TODO: should be moved to a validation step
         if (config.emailConfig) {
-          sendEmailAlert(config.emailConfig, errors);
+          sendEmailAlert(config.emailConfig, error);
         }
         return;
       case AlertMethod.SLACK:
         if (config.slackConfig) {
-          sendSlackMessage(config.slackConfig, errors);
+          sendSlackMessage(config.slackConfig, error);
         }
         return;
       // TODO: implement!

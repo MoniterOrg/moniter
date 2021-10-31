@@ -1,14 +1,19 @@
+import cron from "node-cron";
 import { IConfigConfig } from "../interfaces/config/IConfigConfig.js";
-import { fetchUrls } from "./fetchUrls.js";
-import { filterResponses } from "./filterResponses.js";
-import { sendAlerts } from "./sendAlerts.js";
+import { fetchUrl } from "./fetchUrl.js";
+import { filterResponses } from "./filterResponse.js";
+import { sendAlert } from "./sendAlert.js";
 
 export const run = async (config: IConfigConfig) => {
-  const responses = await fetchUrls(config.urlConfig);
-  const errors = filterResponses(responses);
-  
-  // Send alerts only if there are errors (duh)
-  if (errors.length > 0) {
-    sendAlerts(config, errors);
-  }
+  // for each URL, schedule a job to check for errors
+  config.urlConfig.urlCrons.map(urlCron => {
+    cron.schedule(urlCron.interval, async () => {
+      const response = await fetchUrl(urlCron.url);
+      const error = filterResponses(response);
+      // Send alerts only if there are errors (duh)
+      if (error) {
+        sendAlert(config, error);
+      }
+    })
+  })
 };
